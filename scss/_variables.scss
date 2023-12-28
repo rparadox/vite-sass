@@ -1,0 +1,28 @@
+$main-color: #E6F1FA;
+$main-color-2: #EB5757;
+$advanced: #57A4EB;
+$black: black;
+$black-2: #3F3F3F;
+$white: white;
+$gray-1: #828282;
+$light-blue-hover: #F0F2F2;
+$divider: #C4C4C4;
+$link: #0F6DB1;
+$shadow-1: 10px 10px 25px rgba(0, 0, 0, 25%);
+$alert-state: (
+        "success": (
+                "bg":#E3FFE9,
+                "stroke":#98C99A,
+                "color":#27AE60
+        ),
+        "info": (
+                "bg":#E6F1FA,
+                "stroke":#AFC7DA,
+                "color":#63A6DC
+        ),
+        "error": (
+                "bg":#FFE3E3,
+                "stroke":#C99E98,
+                "color":#EB5757
+        )
+);
