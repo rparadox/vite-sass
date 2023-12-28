@@ -1,0 +1,77 @@
+@mixin form($type,$width,$border-width) {
+  width: $width;
+  height: 44px;
+  background-color: $white;
+  outline: none;
+  @if ($type=="normal" or $type=="empty") {
+    border: 1px solid $divider;
+  } @else if ($type=="required") {
+    border: 1px solid $main-color-2;
+  } @else if ($type=="success") {
+    border: 1px solid #E3FFE9;
+  } @else if ($type=="error") {
+    border: 1px solid $main-color-2;
+  }
+  padding-left: 15px;
+  color: $black-2;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  &::placeholder {
+    color: $divider;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  + p {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    width: $width;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      @if ($type=="empty") {
+        display: none;
+      } @else if ($type=="error") {
+        display: block;
+        content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMSAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9Ikdyb3VwIDMyIj4KPHJlY3QgaWQ9IlJlY3RhbmdsZSA2LjEiIHg9IjAuODQ5MTIxIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9IiNFQjU3NTciLz4KPHBhdGggaWQ9IlZlY3RvciIgZD0iTTMuMzQ5MTIgMi41TDguMzQ5MTIgNy41IiBzdHJva2U9IndoaXRlIi8+CjxwYXRoIGlkPSJWZWN0b3IgMiIgZD0iTTMuMzQ5MTIgNy41TDguMzQ5MTIgMi41IiBzdHJva2U9IndoaXRlIi8+CjwvZz4KPC9zdmc+Cg==");
+      }
+    }
+
+    @if ($type=="empty") {
+      background: $light-blue-hover;
+      padding-left: 16px;
+      color: $black-2;
+    } @else if ($type=="required") {
+      color: $main-color-2;
+    } @else if ($type=="success") {
+      background: #E3FFE9;
+      padding-left: 16px;
+      color: $black-2;
+    } @else if ($type=="error") {
+      background: #FFE3E3;
+      padding-left: 16px;
+      color: $black-2;
+    }
+  }
+}
+
+div.form-parent {
+  @each $state in "normal", "empty", "required", "success", "error" {
+    .form-input.form-#{$state} {
+      @include form($state, 100%, 1px)
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@use "sass:map";
+
+@mixin alert($bg,$color,$stroke) {
+  width: 472px;
+  height: 70px;
+  padding: 0 72px 0 58px;
+  display: flex;
+  align-items: center;
+  background: $bg;
+  color: $color;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  position: relative;
+  &::before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMSAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9Ik9uIj4KPHJlY3QgaWQ9IlJlY3RhbmdsZSA2LjEiIHg9IjAuODQ5MTIxIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9IiMyN0FFNjAiLz4KPHBhdGggaWQ9IlZlY3RvciAyIiBkPSJNMi44NDkxMiA0LjVMNS4zNDkxMiA3TDkuMzQ5MTIgMyIgc3Ryb2tlPSJ3aGl0ZSIvPgo8L2c+Cjwvc3ZnPgo=");
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 24px;
+  }
+  button.alert-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      stroke: $stroke;
+    }
+  }
+}
+
+
+@each $state in "success", "info", "error" {
+  .alert-#{$state} {
+    @include alert(map.get(map.get($alert-state, $state), "bg"), map.get(map.get($alert-state, $state), "color"), map.get(map.get($alert-state, $state), "stroke"))
+  }
+}

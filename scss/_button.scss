@@ -1,0 +1,44 @@
+@mixin btn($height,$bg,$bg-hover,$color,$border) {
+  padding: 0 40px;
+  height: $height;
+  color: $color;
+  font-family: Oswald, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  background-color: $bg;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  @if ($border) {
+    border: 2px solid $divider;
+  }
+  transition: all 300ms linear;
+  &:hover {
+    background-color: $bg-hover;
+    @if ($border) {
+      border: 2px solid $gray-1;
+    }
+  }
+}
+
+@each $i in 1, 2, 3 {
+  @if ($i==1) {
+    .btn-#{$i}{
+      @include btn(40px,$light-blue-hover,$light-blue-hover,$gray-1,true)
+    }
+  }@else if ($i==2) {
+  .btn-#{$i}{
+    @include btn(50px,$black,$main-color-2,$white,false)
+  }
+}
+  @else if ($i==3) {
+    .btn-#{$i}{
+      @include btn(50px,$white,$white,$black-2,true)
+    }
+  }
+}
